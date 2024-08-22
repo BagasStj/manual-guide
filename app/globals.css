@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Monument Extended';
+    src: url('/fonts/MonumentExtended-Regular.ttf') format('truetype'),
+         url('/fonts/MonumentExtended-Bold.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html, body {
+    background-color: #232323;
+    font-family: 'Monument Extended';
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.image-contrainer{
+  display: flex;
+}
+
+.image-item {
+  margin-right: 10px;
+}
+
+/* Remove unnecessary margins for sections */
+section {
+    background-color: transparent; /* Ensure background is transparent */
+    color: #FFFFFF;
+    padding: 1.25rem; /* Adjust padding as needed */
+    margin-top: 0; /* Reset margin-top */
+    margin-bottom: 0; /* Reset margin-bottom */
+}
+
+.svg-small {
+    width: 500px;
+    height: auto;
+}
+
+/* Specific class for Hero Section */
+.hero-section {
+    padding: 2rem; /* Adjust padding for Hero Section */
+}
+
+/* Specific class for Guide Section */
+.guide-section {
+    padding: 2rem; /* Adjust padding for Guide Section */
+}
+
+.transparent-svg {
+    background-color: transparent;
+    width: 1550px;
+    height: 400px;
+}
+
+.svg-large {
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out-left {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-right {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.slide-in-left {
+    animation: slide-in-left 1s ease-out;
+}
+
+.slide-in-right {
+    animation: slide-in-right 1s ease-out;
+}
+
+.slide-out-left {
+    animation: slide-out-left 1s ease-in;
+}
+
+.slide-out-right {
+    animation: slide-out-right 1s ease-in;
+}
+
+.slide-in, .slide-out {
+    opacity: 0;
+}
