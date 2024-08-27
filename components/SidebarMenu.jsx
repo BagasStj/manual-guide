@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ isSidebarOpen }) => {
   const [isFeatureUsageOpen, setIsFeatureUsageOpen] = useState(false);
 
   const toggleFeatureUsage = () => {
@@ -9,7 +9,11 @@ const SidebarMenu = () => {
   };
 
   return (
-    <div className="w-64 bg-transparent text-white min-h-screen p-4 fixed top-20 left-0">
+    <div
+      className={`w-64 text-white min-h-screen p-4 fixed top-[5.0rem] left-0 z-40 transform ${
+        isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+      } transition-transform duration-300 ease-in-out lg:translate-x-0 bg-[trasnparent] lg:bg-transparent`} // Background transparent di desktop
+    >
       <ul className="space-y-4">
         <li>
           <a href="intro" className="hover:text-purple-400">

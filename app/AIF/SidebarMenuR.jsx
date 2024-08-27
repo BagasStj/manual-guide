@@ -47,7 +47,7 @@ const SidebarMenuRight = () => {
   }, []);
 
   return (
-    <div className="w-64 bg-transparent text-white min-h-screen p-4 fixed top-20 right-0 z-50">
+    <div className="hidden lg:block w-64 bg-transparent text-white min-h-screen p-4 fixed top-20 right-0 z-10">
       <ul className="space-y-4">
         <li>
           <a

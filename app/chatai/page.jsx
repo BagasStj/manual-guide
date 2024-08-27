@@ -1,17 +1,51 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from "react";
+import SidebarMenu from "../../components/SidebarMenu"; // Pastikan jalur ini sesuai dengan lokasi file SidebarMenu
 import SidebarMenuRight from './SidebarMenuR'; // Ensure the path is correct
+import Navbar from "../../components/navbar"; // Pastikan jalur ini sesuai dengan lokasi file Navbar
+import { Swiper, SwiperSlide } from 'swiper/react';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 
 export default function ChatAI() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Deklarasi state
+
+
+const toggleSidebar = () => {
+  setIsSidebarOpen(!isSidebarOpen); // Fungsi toggle untuk membuka/menutup sidebar
+};
+
+const settings = {
+  dots: true,  // Show dots for navigation
+  infinite: true,  // Infinite loop
+  speed: 500,  // Transition speed
+  slidesToShow: 1,  // Number of slides to show
+  slidesToScroll: 1,  // Number of slides to scroll
+  arrows: false,  // Hide the navigation arrows
+  swipe: true,
+  touchMove: true,
+  pauseOnDosHover: true,
+  focusOnSelect: true,
+};
+
   return (
     <div className="flex min-h-screen">
+      <Navbar toggleSidebar={toggleSidebar} /> {/* Navbar dengan toggleSidebar */}
+      <SidebarMenu isSidebarOpen={isSidebarOpen} /> {/* Sidebar dengan kontrol visibilitas */}
+      {/* Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-gray-800 opacity-50 z-10 transition-opacity duration-300" onClick={toggleSidebar}></div>
+      )}
+
       <main className="flex-1 mx-4 p-4"> {/* Main content */}
         {/* Hero Section */}
-        <section id="home" className="p-8 bg-transparent mt-20">
+        <section id="home" className="p-8 bg-transparent mt-20 relative">
           <div className="max-w-5xl mx-auto">
-            <h1 className="text-4xl font-bold">AI Chat</h1>
-            <p className="mt-10 text-lg">
+            <h3 className="text-4xl font-bold" style={{ Zindex: 1 }}>AI Chat</h3>
+            <p className="mt-10 text-lg" style={{ Zindex: 1 }}>
               An AI Chat is an advanced tool designed to assist in various tasks related to data visualization and analysis using artificial intelligence. It can automatically generate charts based on data inputs, making it a powerful feature for data-driven projects. The AI Chart can be utilized in numerous industries where data visualization is crucial, including finance, marketing, and research.
             </p>
             <img
@@ -24,23 +58,29 @@ export default function ChatAI() {
                 width: '700px',
                 height: '700px',
                 transform: 'translate(50%, -50%)',
-                zIndex: 1,
+                zIndex: 0,
               }}
             />
             <Image
-              src="/AI-chart.png"
+              src="/aichat.svg"
               alt="Accessing AI Chart"
               width={900}
               height={300}
               className="mt-9"
+              style={{ 
+                top: '100%', // Sesuaikan posisi gambar di bawah teks
+                transform: 'translateX(1%)',
+
+                zIndex: 1,
+              }}
             />
           </div>
         </section>
 
         {/* Guide Section */}
-        <section id="guide" className="p-8 bg-transparent mt-2"> {/* Adjust margin-top for closer positioning */}
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold">Guide to using the AI Chart Feature in Agatha AI</h2>
+        <section id="guide" className="p-8 bg-transparent mt-2" style={{Zindex: 1}}> {/* Adjust margin-top for closer positioning */}
+          <div className="max-w-5xl mx-auto" style={{ Zindex: 1 }}>
+            <h3 className="text-4xl font-bold">Guide to using the AI Chart Feature in Agatha AI</h3>
             <img
               src="/elipse2.svg"
               alt="Lingkaran Detail"
@@ -122,21 +162,51 @@ export default function ChatAI() {
                 <p className="text-lg mt-5">
                   To set a prompt, you can click the button next to &quot;New Chat&quot;, then select &quot;Add new Prompt&quot; and set the prompt.
                 </p>  
-                <div style={{ display: 'flex' }} className="mt-8 image-container">
+                <div
+                  style={{ display: 'flex', overflowX: 'auto' }}
+                  className="mt-8 image-container"
+                >
                   <Image
                     src="/custom-1.svg"
                     alt="Generated Prompt"
                     width={450}
                     height={300}
-                    className="image-item"
+                    className="image-item flex-shrink-0"
+                    zIndex={1}
                   />
                   <Image
                     src="/custom-2.svg"
                     alt="Generated Prompt"
                     width={480}
                     height={300}
-                    className="image-item"
-                  />
+                    className="image-item flex-shrink-0"
+                    zIndex={1}
+                  />                  
+                  {/* Slider for Mobile Devices */}
+                <div className="lg:hidden mt-8">
+                    <Slider {...settings}>
+                      <div>
+                        <Image
+                          src="/custom-1.svg"
+                          alt="Generated Prompt"
+                          width={450}
+                          height={300}
+                          className="w-full"
+                          zIndex={1}
+                        />
+                      </div>
+                      <div>
+                        <Image
+                          src="/custom-2.svg"
+                          alt="Generated Prompt"
+                          width={480}
+                          height={300}
+                          className="w-full"
+                          zIndex={1}
+                        />
+                      </div>
+                    </Slider>                
+                    </div>
                 </div>
                 <ol className="list-decimal pl-10 mt-5 text-lg list-item-bold">
                   <li><strong>Title: </strong>Add title to prompt.</li>
@@ -167,7 +237,7 @@ export default function ChatAI() {
                     width: '700px',
                     height: '700px',
                     transform: 'translate(50%, -50%)',
-                    zIndex: 1,
+                    zIndex: 0,
                 }}
                 />
               </div>

@@ -1,11 +1,28 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
-import SidebarMenuRight from './SidebarMenuR'; // Ensure the path is correct
+import React, { useState } from "react";
+import SidebarMenu from "../../components/SidebarMenu"; // Pastikan jalur ini sesuai dengan lokasi file SidebarMenu
+import Navbar from "../../components/navbar"; // Pastikan jalur ini sesuai dengan lokasi file Navbar
+import SidebarMenuRight from './SidebarMenuR'; 
 
 export default function PhoneAI() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Deklarasi state
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen); // Fungsi toggle untuk membuka/menutup sidebar
+  };
+
+
+
   return (
     <div className="flex min-h-screen">
+      <Navbar toggleSidebar={toggleSidebar} /> {/* Navbar dengan toggleSidebar */}
+      <SidebarMenu isSidebarOpen={isSidebarOpen} /> {/* Sidebar dengan kontrol visibilitas */}
+      {/* Overlay */}
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-gray-800 opacity-50 z-10 transition-opacity duration-300" onClick={toggleSidebar}></div>
+      )}
+
       <main className="flex-1 mx-4 p-4"> {/* Main content */}
         {/* Hero Section */}
         <section id="home" className="p-8 bg-transparent mt-20">

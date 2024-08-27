@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 
 @font-face {
     font-family: 'Monument Extended';
@@ -11,7 +14,7 @@
 }
 
 html, body {
-    background-color: #232323;
+    background-color: black;
     font-family: 'Monument Extended';
     margin: 0;
     padding: 0;
@@ -158,3 +161,70 @@ section {
 .slide-in, .slide-out {
     opacity: 0;
 }
+/* Global or component-specific CSS */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .burger-menu span {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Animation when menu is open */
+  .burger-menu.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .burger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger-menu.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.sidebar-menu {
+    background-color: #232323; /* Default background color for mobile */
+  }
+  
+  @media (min-width: 1024px) {
+    .sidebar-menu {
+        margin-left: 20px; /* Sesuaikan sesuai kebutuhan */
+        padding: 20px; /* Sesuaikan sesuai kebutuhan */
+      background-color: transparent; /* Transparent background for desktop */
+    }
+  }
+  @media (max-width: 768px) {
+    img[alt="Lingkaran Detail"] {
+      top: 120%; /* Sesuaikan posisi vertikal */
+      right: 50%; /* Pusatkan horizontal pada layar kecil */
+      width: 300px; /* Sesuaikan ukuran gambar */
+      height: 300px; /* Sesuaikan ukuran gambar */
+      transform: translate(50%, -50%); /* Atur kembali transformasi untuk tampilan mobile */
+    }
+  
+    h3#structure,
+    p {
+      z-index: 1;
+      position: relative;
+    }
+  }
+  .slick-slider {
+    overflow-x: hidden; /* Hilangkan overflow horizontal */
+  }
+  
+  .slick-list {
+    -webkit-overflow-scrolling: touch; /* Berikan scroll yang lebih halus di perangkat seluler */
+    overflow: hidden; /* Hilangkan scrollbar */
+  }
+  
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }

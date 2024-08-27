@@ -10,23 +10,19 @@ const SidebarMenuRight = () => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
     }
   };
 
   useEffect(() => {
     const sections = ['guide', 'how-to-use', 'custom', 'usage-tips'];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, { threshold: 0.5 });
 
     sections.forEach(id => {
       const section = document.getElementById(id);
@@ -46,7 +42,7 @@ const SidebarMenuRight = () => {
   }, []);
 
   return (
-    <div className="hidden lg:block w-64 bg-transparent text-white min-h-screen p-4 fixed top-20 right-0 z-10">
+    <div className="w-64 bg-transparent text-white min-h-screen p-4 fixed top-20 right-0">
       <ul className="space-y-4">
         <li>
           <a
